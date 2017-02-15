@@ -8,23 +8,68 @@
 <table class="table table-hover">
 <tr class="active">
 <td>Name</td>
-<td>Phone</td>
+<td>Birthday</td>
+<td>Male/Female</td>
+<td>Phone Number</td>
+<td>Email</td>
 </tr>
 <?php
-$row = 1;
+function cmp($a, $b)
+{
+	return strcasecmp ($a[4], $b[4]);
+}
+$list= array();
+$rows=0;
 if (($handle = fopen("list_persion.csv", "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
         $num = count($data);
-        $row++;
-		echo '<tr>';
-        for ($c=0; $c < $num; $c++) {
-			if ( ($c == 0) | ($c == 3) ) {
-				echo '<td>' . $data[$c] . "</td>";
-			}
-            
-        }
-		echo '</tr>';
-    }
+		array_push ($list,$data);
+		$rows++;
+      }
     fclose($handle);
 }
+usort($list, "cmp");
+$page = $_GET['page'];
+if ($page <= 1) {
+		$page = 1;
+	} 
+	else if ($page > $rows / 4) {
+		$page = $rows / 4;
+	}
+foreach($list as $key => $value){
+	if(($key < 4 * $page) && ($key >= 4 *($page-1))){
+		echo "<tr>";
+		foreach( $value as $k=> $v){
+				echo "<td>" . $v . "</td>";
+		}
+		echo "</tr>";
+	}
+}
+echo '</table>
+	<nav aria-label="Page navigation">
+  <ul class="pagination">';
+if($page == 1){
+	echo '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+}
+	else{
+		echo '  <li><a href="index.php?page=' . ($page - 1) . '" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+				</a>
+				</li>';
+	}
+	for($i = 1; $i <= $rows/4; $i++){
+		echo '<li><a href="index.php?page=' . $i . '">' . $i . '</a></li>';
+	}
+if($page == $rows/4){
+	echo '<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+}
+	else{
+		echo '  <li><a href="index.php?page=' . ($page + 1) . '" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+				</a>
+				</li>';
+	}
+echo '</ul>
+</nav>';
 ?>
+
