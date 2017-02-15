@@ -5,6 +5,7 @@
 <h1>this is trainning test file </h1>
 <?php
 echo 'hello, day';
+echo "Order By Email.Click <a href = '/myfunction.php'>here</a>!";
 $arrPersion = ['cars', 'test', 'com', 'spider'];
 
 foreach ($arrPersion as $persion) {
