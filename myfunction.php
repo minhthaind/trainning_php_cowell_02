@@ -15,11 +15,16 @@ function handleCsvFile()
         }
         fclose($handle);
     }
-    usort($listPerson, function ($a, $b) {
+    return $listPerson;
+}
+
+function orderByEmail($listPerson){
+       usort($listPerson, function ($a, $b) {
         return $a[4] <=> $b[4];
     });
     return $listPerson;
-}
+} 
+
 function exportToXls($rawData)
 {
     header("Content-Disposition: attachment; filename=\"output.xls\"");
@@ -34,5 +39,6 @@ function exportToXls($rawData)
     echo 'Success';
 }
 $rawData = handleCsvFile();
+$rawData = orderByEmail($rawData);
 exportToXls($rawData);
 ?>
