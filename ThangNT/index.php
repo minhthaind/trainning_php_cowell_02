@@ -9,7 +9,7 @@
         <div class="col-md-10 col-md-offset-1">
             <h1>PHP Pagination</h1>
             <?php
-            $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1; // lấy tham số ở trên url , nếu ko có page thì mđ=1
+            $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1; 
             $handle = fopen("list_persion.csv", "r") or die("file dont exist");
             $data = array();
            
