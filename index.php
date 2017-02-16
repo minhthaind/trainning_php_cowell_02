@@ -56,7 +56,10 @@ if($page == 1){
 				</li>';
 	}
 	for($i = 1; $i <= $rows/4; $i++){
-		echo '<li><a href="index.php?page=' . $i . '">' . $i . '</a></li>';
+		if ($i == $page){
+			echo '<li class = "active"><a href="index.php?page=' . $i . '">' . $i . '</a></li>';
+		}
+		else echo '<li><a href="index.php?page=' . $i . '">' . $i . '</a></li>';
 	}
 if($page == $rows/4){
 	echo '<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
