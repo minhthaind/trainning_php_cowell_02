@@ -81,7 +81,7 @@
                 // PHẦN HIỂN THỊ PHÂN TRANG
                 // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
                 if ($current_page > 1 && $total_page > 1) {
-                    echo "<li>".'<a href="index.php?page=' . ($current_page - 1) . '">Prev</a>  '."</li>";
+                    echo "<li>".'<a href="paging_bootstrap.php?page=' . ($current_page - 1) . '">Prev</a>  '."</li>";
                 }
 
                 // Lặp khoảng giữa
@@ -91,13 +91,13 @@
                     if ($i == $current_page) {
                         echo "<li>".'<span>' . $i . '</span>  '."</li>";
                     } else {
-                        echo "<li>".'<a href="index.php?page=' . $i . '">' . $i . '</a>  '."</li>";
+                        echo "<li>".'<a href="paging_bootstrap.php?page=' . $i . '">' . $i . '</a>  '."</li>";
                     }
                 }
 
                 // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
                 if ($current_page < $total_page && $total_page > 1) {
-                    echo "<li>".'<a href="index.php?page=' . ($current_page + 1) . '">Next</a>  '."</li>";
+                    echo "<li>".'<a href="paging_bootstrap.php?page=' . ($current_page + 1) . '">Next</a>  '."</li>";
                 }
                 ?>
             </ul>
