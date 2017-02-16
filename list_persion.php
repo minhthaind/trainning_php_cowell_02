@@ -38,20 +38,18 @@
         if (($handle = fopen("list_persion.csv", "r")) !== FALSE) {
             $i=0;
             while (($data= fgetcsv($handle, 1000,",")) !== FALSE){
-                $all[$i] = $data;
-                array_push($arr, $data);
-                $row++;
+                $arr[$i] = $data;
                 $i++;
             }
             function cmp($a, $b)
             {
-                if($a[3]==$b[3]){
+                if($a[2]==$b[2]){
                     return 0;
                 }
-                return $a[3]>$b[3]?-1:1;
+                return $a[2]>$b[2]?-1:1;
             }
 
-            usort($all, "cmp");
+            usort($arr, "cmp");
             fclose($handle);
         }
 
