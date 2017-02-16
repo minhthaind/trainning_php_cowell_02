@@ -12,8 +12,7 @@
             $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1; // lấy tham số ở trên url , nếu ko có page thì mđ=1
             $handle = fopen("list_persion.csv", "r") or die("file dont exist");
             $data = array();
-            //đọc dòng nào thì add dòng đấy vào mảng data
-            //hàm feof dùng để test điểm cuối của file. 
+           
             while (!feof($handle)) {
                 $dataTmp = fgetcsv($handle, 4096, ",");
                 array_push($data, $dataTmp);
@@ -21,12 +20,10 @@
 
             $limit = 4; // 4 record trong 1 trang.
             $page = $page < 1 ? 1 : $page; // 
-
             $start = (($page - 1) * $limit) ; 
-            // $start là số thứ tự record bắt đầu của trang.
-            //print_r(count($data)); die(); hàm count($data) trả về số bản ghi trong mảng data
+                      
             if ($page <= (ceil(count($data) / $limit))) { 
-                $end = ($page * $limit); // tinh thứ tự của bản ghi cuối cùng của trang
+                $end = ($page * $limit); 
             } else {
                 $end = (ceil(count($data) / $limit));
             }
