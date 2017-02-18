@@ -1,0 +1,23 @@
+/* Modal */
+
+.btn-modal {
+	float: right;
+	margin-top: 20px;
+	padding: 7px 16px;
+}
+
+.modal-title {
+	text-align: center;
+}
+
+.gender {
+	margin: 0px 10px;
+}
+
+.error {
+	color: red;
+}
+
+.btn-info.focus, .btn-info:focus {
+	border: none;
+}
