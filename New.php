@@ -125,16 +125,16 @@ if($valid){
 	    	    <span class="red" role="alert">* <?php echo $genderErr;?></span>
             </fieldset>
             <div class="form-group">
-              <label for="nameInput" class="col-md-4 control-label">Phone: </label>
+              <label for="phoneInput" class="col-md-4 control-label">Phone: </label>
                 <div class="col-md-6">
-                  <input id="nameInput" type="text" class="form-control" placeholder="Enter name" name="name" value="<?php echo $name;?>" maxlength="100">
+                  <input id="phoneInput" type="text" class="form-control" placeholder="Enter phone" name="phone" value="<?php echo $phone;?>" maxlength="100">
                 </div>
     	      <span class="red" role="alert">* <?php echo $phoneErr;?></span>
             </div>
 	        <div class="form-group">
-              <label for="nameInput" class="col-md-4 control-label">E-mail:</label>
+              <label for="emailInput" class="col-md-4 control-label">E-mail:</label>
                 <div class="col-md-6">
-                  <input id="nameInput" type="text" class="form-control" placeholder="Enter name" name="name" value="<?php echo $name;?>" maxlength="100">
+                  <input id="emailInput" type="text" class="form-control" placeholder="Enter email" name="email" value="<?php echo $email;?>" maxlength="100">
                 </div>
 	          <span class="red" role="alert">* <?php echo $emailErr;?></span>
             </div>
