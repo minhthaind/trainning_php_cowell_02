@@ -1,0 +1,10 @@
+
+thead{
+            background: #ffff80 ;
+        } 
+tbody>tr:hover{
+            background:#cdcdcd;
+        }
+h2{
+	text-align: center;
+}  
