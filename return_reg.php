@@ -1,4 +1,4 @@
-   <?php 
+   <?php   
 	$name = test_input($_POST['name']);
 	$birthday = test_input($_POST['birthday']);
 	$sex = test_input($_POST['sex']);
