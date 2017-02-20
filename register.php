@@ -25,7 +25,7 @@
             <div class="panel panel-default ">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="GET" action="register.php">
+                    <form class="form-horizontal" role="form" method="GET" action="post_register.php">
                         <input type="hidden" name="_token" value="trainningcowell2222" >
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
