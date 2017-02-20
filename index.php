@@ -1,119 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
-    <!-- Bootstrap -->
-    <link href="public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="public/css/main.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>
+<div class="container">
+	<?php 
+		$page = !isset($_REQUEST["page"]) ? 1 : $_REQUEST["page"];
+	 ?>
+	<h2>Bảng giới tính</h2>
+	<div class="row">
+		<table class="table table-hover">
+			<thead>
+				<th>Họ tên</th>
+				<th>Ngày sinh</th>
+				<th>Giới tính</th>
+				<th>Số điện thoại</th>
+				<th>Email</th>
+			</thead>
+			<tbody>
+			<?php
+			$list = array();
+			function cmp($a, $b)
+			{
+				return strcmp($a[2], $b[2]);
+			}
+			$num = 0;
+			if (($handle = fopen("list_persion.csv", "r")) !== FALSE) {
+			    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+			    	array_push($list, $data);
+			    	$num++;
+			    }
+			    fclose($handle);
+			}
+			$eachPage = $num/4;
+			usort($list, "cmp");
+			foreach ($list as $key => $value) {
+				echo "<tr>";
+				if(($key >= $eachPage * ($page - 1)) && ($key < $eachPage * $page)){
+					foreach ($value as $k => $v) {
+						echo "<td>" . $v . "</td>";
+					}
+				}
+				echo "</tr>";
+			}
+			?>
+			</tbody>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="bs-example" data-example-id="panel-without-body-with-table">
-    <div class="panel panel-default">
-        <div class="panel-heading">Panel heading</div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+		</table>
+		<ul class="pagination" style="float: right">
+			<?php 
+				if($page == 1) {
+					?>
+					<li class="disabled"><span>&laquo;</span></li>
+					<?php
+				} else{
+					$pagenew = $page - 1;
+					?>
+					<li><a href="?page=<?php echo $pagenew ?>" title=""><span>&laquo;</span></a></li>
+					<?php
+				}
+			 ?>
+			
+			<?php 
+				for ($i = 1; $i <= 4 ; $i++) { 
+			?>
+			<li><a href="?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+			<?php
+				}
+			?>
+			<?php 
+				if($page == 4) {
+					?>
+					<li class="disabled"><span>&raquo;</span></li>
+					<?php
+				} else{
+					$pagenew = $page + 1;
+					?>
+					<li><a href="?page=<?php echo $pagenew ?>" title=""><span>&raquo;</span></a></li>
+					<?php
+				}
+			 ?>
+	  </ul>
+	</div>
 </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="public/js/bootstrap.min.js"></script>
-</body>
-</html>
