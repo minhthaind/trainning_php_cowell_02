@@ -1,3 +1,6 @@
+<?php 
+require('database/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userErr = "Username is required";
   } else {
     $username = test_input($_POST["username"]);
-    // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z0-9_]*$/",$username)) {
       $userErr = "Username cant have special characters"; 
     }
@@ -95,11 +97,14 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-require('database/connect.php');
+//if posted values are correct, save data
 if($valid){
   $query = "INSERT INTO users(first_name, last_name, phone, email, username, password) VALUES ('" . $fname . "','" . $lname . "','" . $phone . "','" . $email . "','" . $username . "','" . $password . "')";
   mysqli_query($conn,$query);
   mysqli_close($conn);
+  echo '	<script>
+				window.location.href = "show";
+			</script>';
 }
 
 ?>
