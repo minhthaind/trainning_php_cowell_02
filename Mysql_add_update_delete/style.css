@@ -1,0 +1,21 @@
+body{
+		background: #ccc;
+	}
+		h3{
+         			text-align: center;
+         		}
+		.content{
+         			width:430px;
+         			margin:0 auto;
+         			border: 1px solid #fff;
+        			padding:5px 20px;
+         			border-radius: 5px;
+         			background: #f3efe2;
+         			margin-top: 50px;
+         		}
+		span{
+         			color: #ff0000;
+         		}
+		.alert-danger {
+         			display: none;
+         		}
